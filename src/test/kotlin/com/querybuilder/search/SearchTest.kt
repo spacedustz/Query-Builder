@@ -1,5 +1,6 @@
 package com.querybuilder.search
 
+import com.querybuilder.entity.Member
 import com.querybuilder.entity.QMember
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.assertj.core.api.Assertions
@@ -49,5 +50,18 @@ class SearchTest @Autowired constructor(
         m.name.like("member%") // like 검색
         m.name.contains("member") // like %member% 검색
         m.name.startsWith("member") // like member% 검색
+    }
+
+    /** @desc And 조건을 파라미터로 처리 */
+    @Test
+    fun searchAndParam() {
+        val m: QMember = QMember("m")
+
+        val result: List<Member> = queryFactory
+            .selectFrom(m)
+            .where(m.name.eq("member1"))
+            .fetch()
+
+        assertThat(result.size).isEqualTo(1)
     }
 }
