@@ -2,8 +2,8 @@ package com.querybuilder.search
 
 import com.querybuilder.entity.Member
 import com.querybuilder.entity.QMember
+import com.querydsl.core.QueryResults
 import com.querydsl.jpa.impl.JPAQueryFactory
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -63,5 +63,30 @@ class SearchTest @Autowired constructor(
             .fetch()
 
         assertThat(result.size).isEqualTo(1)
+
+        //List
+        val fetch: List<Member> = queryFactory
+            .selectFrom(m)
+            .fetch()
+
+        //단 건
+        val findMember1: Member? = queryFactory
+            .selectFrom(m)
+            .fetchOne()
+
+        //처음 한 건 조회
+        val (id, name, age, team) = queryFactory
+            .selectFrom(m)
+            .fetchFirst()
+
+        //페이징에서 사용
+        val results: QueryResults<Member> = queryFactory
+            .selectFrom(m)
+            .fetchResults()
+
+        //count 쿼리로 변경
+        val count = queryFactory
+            .selectFrom(m)
+            .fetchCount()
     }
 }
