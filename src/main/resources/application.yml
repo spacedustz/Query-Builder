@@ -1,8 +1,12 @@
 spring:
 
 #H2
+  h2:
+    console:
+      enabled: true
+
   datasource:
-    url: jdbc:h2:tcp://test
+    url: jdbc:h2:mem:test
     username: sa
     password:
     driver-class-name: org.h2.Driver

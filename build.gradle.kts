@@ -29,6 +29,7 @@ val querydslVersion ="5.0.0"
 
 dependencies {
     /** @desc JPA */
+    implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     compileOnly("org.projectlombok:lombok")
