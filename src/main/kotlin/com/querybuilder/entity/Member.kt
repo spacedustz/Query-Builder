@@ -8,15 +8,17 @@ data class Member(
 
     @Column(name = "member_id")
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long,
-    var name: String,
-    var age: Long,
+    var id: Long?,
+    var name: String?,
+    var age: Long?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
     var team: Team
 ) {
     constructor(name: String, age: Long, team: Team): this(id = 0L, name = name, age = age, team = team)
+
+    constructor(name: String?, age: Long): this(0L, name, age, Team("test"))
 
     fun changeTeam(team: Team) {
         this.team = team
