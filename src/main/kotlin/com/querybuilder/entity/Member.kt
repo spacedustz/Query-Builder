@@ -8,7 +8,7 @@ data class Member(
 
     @Column(name = "member_id")
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: String = "",
+    var id: Long,
     var name: String,
     var age: Long,
 
@@ -16,10 +16,7 @@ data class Member(
     @JoinColumn(name = "team_id")
     var team: Team
 ) {
-
-    constructor(name: String): this(UUID.randomUUID().toString().substring(0, 8), name, 0, Team())
-
-    constructor(name: String, age: Long, team: Team): this(UUID.randomUUID().toString().substring(0, 8), name, age, team)
+    constructor(name: String, age: Long, team: Team): this(id = 0L, name = name, age = age, team = team)
 
     fun changeTeam(team: Team) {
         this.team = team
