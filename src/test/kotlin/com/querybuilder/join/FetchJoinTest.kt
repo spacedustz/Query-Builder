@@ -62,14 +62,4 @@ class FetchJoinTest @Autowired constructor(
 
         assertThat(loaded).`as`("Fetch Join 적용").isTrue
     }
-
-
-    /**
-     *
-     * @desc SubQuery Join
-     */
-    @Test
-    fun subQueryJoin() {
-
-    }
 }
