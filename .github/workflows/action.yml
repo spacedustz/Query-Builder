@@ -1,12 +1,9 @@
 name: Build and Test Action
 
 on:
-  workflow_dispatch:
   push:
-    branches: [ "main" ]
-
-permissions:
-  contents: read
+    branches:
+      - main
 
 jobs:
   build:
@@ -16,14 +13,33 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-#      - uses: actions/cache@v3
-#        with:
-#          path: |
-#            ~/.gradle/caches
-#            ~/.gradle/wrapper
-#          key: macOS-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-#          restore-keys: |
-#            ${{ macOS }}-gradle-
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Compress All Report Files
+        if: ${{ failure() }}
+        run: |
+          echo "Compressing All Report Files..."
+          TIMESTAMP=$(date + %Y%m%d_%H%M%S)
+          mkdir report_files
+          REPORT_DIRS=$(find . -type d -path '*/build/reports/tests/test')
+          for dir in $REPORT_DIRS; do
+            module_path=$(echo $dir | awk -F'/build/' '{print $1}' | cut -c 3-)
+            cp -r $dir report_files/$module_path/$(basename $(dirname $dir))
+          done
+          tar czvf report_files_$TIMESTAMP.tar.gz report_files
+
+      - name: Upload Error Report Files to Artifacts
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: report_files
+          path: report_files_*.tar.gz
 
       - name: Set up JDK
         uses: actions/setup-java@v3
