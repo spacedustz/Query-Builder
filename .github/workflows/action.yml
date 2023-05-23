@@ -8,8 +8,6 @@ on:
 permissions:
   contents: read
 
-description: Build and Test
-runs:
 jobs:
   build:
     runs-on: ubuntu-latest
