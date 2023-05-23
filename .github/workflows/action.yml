@@ -8,6 +8,8 @@ on:
 permissions:
   contents: read
 
+description: Build and Test
+runs:
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,7 +22,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11'
-          distribution: 'openjdk'
+          distribution: 'zulu'
           cache: gradle
 
       - name: Grant Execute Permission for Gradle
