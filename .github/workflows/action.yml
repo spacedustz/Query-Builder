@@ -29,11 +29,11 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11'
-          distribution: 'zulu'
+          distribution: '<distribution>'
           cache: gradle
 
-      - name: Grant Execute Permission for Gradle
-        run: chmod +x gradle
-
-      - name: Build with Gradle
-        run: ./gradlew build
+#      - name: Grant Execute Permission for Gradle
+#        run: chmod +x gradle
+#
+#      - name: Build with Gradle
+#        run: ./gradlew build
