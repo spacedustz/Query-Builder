@@ -21,6 +21,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'zulu'
+          cache: gradle
+
+      - name: Grant Execute Permission for Gradle
+        run: chmod +x gradle
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
       - name: Compress All Report Files
         if: ${{ failure() }}
         run: |
@@ -40,16 +53,3 @@ jobs:
         with:
           name: report_files
           path: report_files_*.tar.gz
-
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          java-version: '11'
-          distribution: 'zulu'
-          cache: gradle
-
-      - name: Grant Execute Permission for Gradle
-        run: chmod +x gradle
-
-      - name: Build with Gradle
-        run: ./gradlew build
