@@ -51,4 +51,23 @@ class SubQueryJoinTest @Autowired constructor(
 
         assertThat(result).extracting("age").containsExactly(30, 40)
     }
+
+    /**
+     * 서브 쿼리 여러건 처리, in 사용
+     * @desc SubQuery Join - in 사용
+     */
+    @Test
+    fun subQueryJoinIn() {
+        val m = QMember.member
+        val sub = QMember("sub")
+
+        val result = queryFactory
+            .selectFrom(m)
+            .where(m.age.`in`(
+                JPAExpressions.select(sub.age).from(sub).where(sub.age.gt(10))
+            ))
+            .fetch()
+
+        assertThat(result).extracting("age").containsExactly(20, 30, 40)
+    }
 }
