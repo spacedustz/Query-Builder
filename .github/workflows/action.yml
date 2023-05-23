@@ -23,7 +23,7 @@ jobs:
             ~/.gradle/wrapper
           key: ${{ macOS }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
-            ${{ runner.os }}-gradle-
+            ${{ macOS }}-gradle-
 
       - name: Set up JDK
         uses: actions/setup-java@v3
