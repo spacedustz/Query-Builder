@@ -32,8 +32,8 @@ jobs:
           distribution: 'zulu'
           cache: gradle
 
-#      - name: Grant Execute Permission for Gradle
-#        run: chmod +x gradle
-#
-#      - name: Build with Gradle
-#        run: ./gradlew build
+      - name: Grant Execute Permission for Gradle
+        run: chmod +x gradle
+
+      - name: Build with Gradle
+        run: ./gradlew build
