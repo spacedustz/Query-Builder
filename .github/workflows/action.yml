@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  S3_BUCKET_NAME: cosmic-dangnyang-cicd-bucket
+
 jobs:
   build:
     runs-on: self-hosted
@@ -74,7 +77,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: ap-northeast-2
 
-
       # 압축한 프로젝트 S3로 업로드
       - name: Upload to S3
-        run: aws s3 cp --resion ap-northeast-2 ./ci.zip s3://cosmic-dangnyang-cicd-bucket/ci.zip
+        run: aws s3 cp --resion ap-northeast-2 ./ci.zip s3://$S3_BUCKET_NAME/ci.zip
