@@ -71,7 +71,7 @@ jobs:
 
       # AWS Access & Secret Key 권한 확인, Github Actions Secret에서 등록
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
@@ -79,4 +79,4 @@ jobs:
 
       # 압축한 프로젝트 S3로 업로드
       - name: Upload to S3
-        run: aws s3 cp --resion ap-northeast-2 ./ci.zip s3://$S3_BUCKET_NAME/ci.zip
+        run: aws s3 cp --region ap-northeast-2 ./ci.zip s3://$S3_BUCKET_NAME/ci.zip
