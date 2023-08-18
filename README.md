@@ -1,6 +1,7 @@
 # Dynamic Query Builder
-- Practice QueryDsl
-- Migration JPQL -> QueryDSL for Easy Write Dynamic Query
+- QueryDSL 메모장 (Private Repo에서 구현한 걸 메모만 하는 저장소)
+
+<br>
 
 # 진행 상황
 - 초기 설정
@@ -9,3 +10,8 @@
 - 정렬, 페이징
 - 집합 함수, GroupBy, Having
 - Inner & Outer & Cross Join 추가
+
+<br>
+
+# 메모
+- [조건 검색 기능](https://github.com/spacedustz/Query-Builder/blob/main/src/main/kotlin/com/querybuilder/Description/Search-Admin.md)
