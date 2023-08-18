@@ -14,4 +14,5 @@
 <br>
 
 # 메모
-- [조건 검색 기능](https://github.com/spacedustz/Query-Builder/blob/main/src/main/kotlin/com/querybuilder/Description/Search-Admin.md)
+- [조건 검색 기능1](https://github.com/spacedustz/Query-Builder/blob/main/src/main/kotlin/com/querybuilder/Description/Search-Admin.md)
+- [조건 검색 기능2](https://github.com/spacedustz/Query-Builder/blob/main/src/main/kotlin/com/querybuilder/Description/Conditional-Query.md)
